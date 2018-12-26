@@ -9,7 +9,7 @@ const int OBSNUM=100;
 class Road_Point
 {
 public:
-	Vector pos;//中点的位置
+	Vector pos;//中点
 	float size;//尺寸
 	Vector left;//左边边界点
 	Vector right;//右边边界点

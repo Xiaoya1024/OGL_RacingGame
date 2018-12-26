@@ -2,20 +2,21 @@
 #include "Road.h"
 #include "MathHelper.h"
 #include <GL/glut.h>
-
+bool flag=false;
 ///////////////////////////
 void Road::Setpos(float size)//设置路线
 {
 	int i=0;
 	float x=0,y=0,z=0;
 	float width=20;
+	
 	for(i=0;z<100;z++)//直道(0,0,0)->(0,0,100) 
 	{
 		point[i].pos.Set(x*size,y*size,z*size);
 		point[i].size=width*size;
 		i++;
 	}
-	for(float angle=0;angle<PI/2;angle+=Radian)//90度右转(0,0,100)->(50,0,150)
+	for(float angle=0;angle<PI/2;angle+=Radian)//90度左转(0,0,100)->(50,0,150)
 	{
 		x=50-50*cos(angle);
 		z=100+50*sin(angle);
@@ -23,7 +24,7 @@ void Road::Setpos(float size)//设置路线
 		point[i].size=width*size;
 		i++;
 	}
-	for(float angle=0;angle<PI/2;angle+=Radian)//90度左转(50,0,150)->(80,0,200)
+	for(float angle=0;angle<PI/2;angle+=Radian)//90度右转(50,0,150)->(80,0,200)
 	{
 		x=50+30*sin(angle);
 		z=200-50*cos(angle);
@@ -37,7 +38,7 @@ void Road::Setpos(float size)//设置路线
 		point[i].size=width*size;
 		i++;
 	}
-	for(float angle=0;angle<PI/4;angle+=Radian)//45度左转(80,0,300)->(50+15*√2,0,300+15*√2)
+	for(float angle=0;angle<PI/4;angle+=Radian)//45度右转(80,0,300)->(50+15*√2,0,300+15*√2)
 	{
 		x=50+30*cos(angle);
 		z=300+30*sin(angle);
@@ -45,12 +46,21 @@ void Road::Setpos(float size)//设置路线
 		point[i].size=width*size;
 		i++;
 	}
-	/*for(float angle;angle<PI/4;angle+=Radian)//90度右转(50+15*√2,0,300+15*√2)->()
+	for(x=50+30*cos(PI/4),z=300+30*sin(PI/4);z<350+30*sin(PI/4);z++,x--)//直道(50+15*√2,0,300+15*√2)->(15*√2,0,350+15*√2)
 	{
-		x=
-	}*/
+		point[i].pos.Set(x*size,y*size,z*size);
+		point[i].size=width*size;
+		i++;
+	}
+	for(float angle=0;angle<PI/4;angle+=Radian)//45度左转(15*√2,0,350+15*√2)->()
+	{
+		x=60*cos(PI/4)-30*cos(angle-PI/4);
+		z=350+60*sin(PI/4)+30*sin(angle-PI/4);
+		point[i].pos.Set(x*size,y*size,z*size);
+		point[i].size=width*size;
+		i++;
+	}
 	this->point_number=i;
-	printf("%d\n",point_number);
 }
 void Road::Set_all_boundary()
 {
@@ -59,7 +69,6 @@ void Road::Set_all_boundary()
 		Vector road_dir(point[i+1].pos-point[i].pos);
 		point[i].Setboundary(road_dir);
 	}
-	printf("%d\n",point_number);
 	Vector road_dir(point[point_number-1].pos-point[point_number-2].pos);
 	point[point_number-1].Setboundary(road_dir);
 }
@@ -71,8 +80,8 @@ void Road_Point::Setboundary(Vector dir)//设置边界
 	Rotate.SetRotate(90,Vector (0,1,0));
 	temp=Rotate.MulVector(dir);
 	temp.normalize();
-	this->left=temp * -size + pos;
-	this->right=temp * size + pos;
+	this->left=temp * size + pos;
+	this->right=temp * -size + pos;
 }
 void Road::initRoad()//设置路面
 {
@@ -130,7 +139,7 @@ void Obs::initObs()//构造障碍物的面
 		glBegin(GL_QUADS);
 		glVertex3f(point[0+i].x,point[0+i].y,point[0+i].z);
 		glVertex3f(point[1+i].x,point[1+i].y,point[1+i].z);
-		glVertex3f(point[5+i].x,point[5+i].y,point[5+i].z);
+		glVertex3f(point[(5+i)%8].x,point[(5+i)%8].y,point[(5+i)%8].z);
 		glVertex3f(point[4+i].x,point[4+i].y,point[4+i].z);
 		glEnd();
 	}
