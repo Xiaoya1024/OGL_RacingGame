@@ -10,7 +10,7 @@ void Road::Setpos(float size)//设置路线
 	float x=0,y=0,z=0;
 	float width=20;
 	
-	for(i=0;z<100;z++)//直道(0,0,0)->(0,0,100) 
+	for(i=0;z<100;z++)//直道(0,0,0)->(0,0,100) .
 	{
 		point[i].pos.Set(x*size,y*size,z*size);
 		point[i].size=width*size;
