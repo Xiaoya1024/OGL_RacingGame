@@ -9,7 +9,7 @@ const int OBSNUM=100;
 class Road_Point
 {
 public:
-	Vector pos;//中点
+	Vector pos;//中点.
 	float size;//尺寸
 	Vector left;//左边边界点
 	Vector right;//右边边界点
@@ -36,6 +36,7 @@ private:
 class Obs//障碍物
 {
 public:
+	Vector center;//中心点
 	Vector point[8];
 	void Setobs(float obs_size,float angle=0.0f,Vector pos=Vector(0,0,1));//设置障碍
 	void initObs();//构造障碍物的面
@@ -47,9 +48,9 @@ public:
 	int obs_number;
 	All_obs()
 	{
-		Set_all_obs();
+		Set_all_obs(1.0f);
 	}
 	void All_initObs();
 private:
-	void Set_all_obs();
+	void Set_all_obs(float size=1.0f);
 };
