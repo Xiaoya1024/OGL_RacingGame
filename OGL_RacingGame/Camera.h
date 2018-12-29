@@ -8,10 +8,11 @@ class Camera
 public:
 	Camera(void);
 	~Camera(void);
-	float distance;
-	int mode;	//0代表小车第一视角，1代表上帝视角
+	int angleX;
+	int angleY;
+	int sensitivity;
 	void update(Car);
-	void turnGodView(void);
-	void turnCarView(void);
+private:
+	float distance;
 };
 

@@ -3,14 +3,15 @@
 #include <vector>
 #include "Matrix.h"
 
+const float RATIO=1.0f;//用于调整道路和路障的缩放比
 const int MAX=10000;
 const int OBSNUM=100;
 
 class Road_Point
 {
 public:
-	Vector pos;//中点.
-	float size;//尺寸.
+	Vector pos;//中点
+	float size;//尺寸
 	Vector left;//左边边界点
 	Vector right;//右边边界点
 
@@ -24,7 +25,7 @@ public:
 	int point_number;//使用的点的个数
 	Road ()
 	{
-		Setpos(1.0f);
+		Setpos(RATIO);
 		Set_all_boundary();
 	}
 	void initRoad();//构造路面
@@ -48,7 +49,7 @@ public:
 	int obs_number;
 	All_obs()
 	{
-		Set_all_obs(1.0f);
+		Set_all_obs(RATIO);
 	}
 	void All_initObs();
 private:

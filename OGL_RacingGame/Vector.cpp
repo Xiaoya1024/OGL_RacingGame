@@ -115,15 +115,15 @@ float Vector::findSeta(Vector&p){//求两个向量之间的夹角
 }
 Vector Vector::rotateByAxis(float angle,int type){
 	Vector res;
-	float _angle=RadianToDegree(angle);
+	float _angle=DegreeToRadian(angle);
 	if(type==0){
 		res.x=this->x;
 		res.y=this->y*cos(_angle)-this->z*sin(_angle);
 		res.z=this->y*sin(_angle)+this->z*cos(_angle);
 	}else if(type==1){
 		res.y=this->y;
-		res.x=this->x*cos(_angle)+this->z*sin(_angle);
-		res.z=this->x*(-sin(_angle))+this->z*cos(_angle);
+		res.x=this->x*cos(_angle)-this->z*sin(_angle);
+		res.z=this->x*(sin(_angle))+this->z*cos(_angle);
 	}else if(type==2){
 		res.z=this->z;
 		res.x=this->x*cos(_angle)-this->y*sin(_angle);

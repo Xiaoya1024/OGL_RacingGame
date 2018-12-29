@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+*.sln
+*.ilk
+Debug/OGL_RacingGame.pdb
