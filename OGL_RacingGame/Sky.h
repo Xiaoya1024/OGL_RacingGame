@@ -1,7 +1,7 @@
 #pragma once
-#include "stdafx.h"
 #include <gl/glaux.h>
 #include <GL/glut.h>
+#pragma comment(lib,"glaux.lib ")
 
 class Sky{
 public:
@@ -13,6 +13,6 @@ public:
 	GLuint T;
 	//≥ı ºªØ
 	Sky();
-	bool InitSky(float skyX,float skyY,float skyZ,float skyR, char *path);
-	void Show();
+	bool InitSky(char* path);
+	void Show(float skyX,float skyY,float skyZ,float skyR);
 };

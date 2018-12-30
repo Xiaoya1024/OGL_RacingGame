@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Sky.h"
 
 Sky::Sky(){
@@ -8,11 +7,8 @@ Sky::Sky(){
 	r=200;
 	seta=0;
 }
-bool Sky::InitSky(float skyX,float skyY,float skyZ,float skyR, char *path){
-	x=skyX;
-	y=skyY;
-	z=skyZ;
-	r=skyR;
+bool Sky::InitSky( char* path){
+	
 	
 	qobj = gluNewQuadric();
 	gluQuadricNormals(qobj,GLU_SMOOTH);
@@ -33,11 +29,15 @@ bool Sky::InitSky(float skyX,float skyY,float skyZ,float skyR, char *path){
 	}
 	return false;
 }
-void Sky::Show(){
+void Sky::Show(float skyX,float skyY,float skyZ,float skyR){
+	x=skyX;
+	y=skyY;
+	z=skyZ;
+	r=skyR;
 	seta+=0.1;
 	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
-	//glFrontFace(GL_CCW);
+	//glFrontFace(GL_CW);
 	glCullFace(GL_BACK);
 	glBindTexture(GL_TEXTURE_2D, T);
 	glTranslatef(x,y,z); 
