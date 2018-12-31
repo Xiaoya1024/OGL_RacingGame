@@ -37,7 +37,6 @@ void Sky::Show(float x,float y,float z){
 	//glRotatef(90,1,0,0);
 	glColor4f(1,1,1,1);
 
-	
 	glBindTexture(GL_TEXTURE_2D, T[1]);
 	glBegin(GL_QUADS);
 	// Front Face
@@ -66,13 +65,17 @@ void Sky::Show(float x,float y,float z){
 	glEnd();
 
 	glBindTexture(GL_TEXTURE_2D, T[3]);
+	glPushMatrix();
+	glRotatef(180,0,1,0);
 	glBegin(GL_QUADS);
+	
 	// Bottom Face
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, -1.0f, -1.0f);	// Top Right Of The Texture and Quad
 	glTexCoord2f(0.0f, 1.0f); glVertex3f( 1.0f, -1.0f, -1.0f);	// Top Left Of The Texture and Quad
 	glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f,  1.0f);	// Bottom Left Of The Texture and Quad
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f,  1.0f);	// Bottom Right Of The Texture and Quad
 	glEnd();
+	glPopMatrix();
 
 	glBindTexture(GL_TEXTURE_2D, T[4]);
 	glBegin(GL_QUADS);

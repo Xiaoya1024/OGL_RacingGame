@@ -2,6 +2,8 @@
 #pragma once
 #include "stdafx.h"
 #include <GL/glut.h>
+#include <gl/glaux.h>
+#pragma comment(lib,"glaux.lib ")
 
 class SunLight
 {
@@ -15,14 +17,12 @@ public:
 	//位置/方向 
 	GLfloat pos[4];
 	
-	//太阳大小
-	GLfloat size;
-	//太阳颜色
-	GLfloat r,g,b;
+	//太阳纹理
+	GLuint T;
 
-	SunLight();
+	SunLight(float x,float y,float z);//光的方向
 
-	void SetUp();
-	void Start();
+	bool SetUp();
+	void Start(float x,float y,float z,float size);//太阳位置
 	void Stop();
 };
